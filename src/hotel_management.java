@@ -3,14 +3,12 @@ import java.util.Scanner;
 
 public class hotel_management {
 
-    private static final String url = "jdbc:mysql://localhost:3306/hotel_db";
-    private static final String username = "root";
-    private static final String password = "Hamraj@786";
+    static Connect obj = new Connect();
 
 
     public static void main(String[] args) throws RuntimeException{
         try{
-            Connection con = DriverManager.getConnection(url, username, password);
+            Connection con = DriverManager.getConnection(obj.url, obj.username, obj.password);
             while(true){
                 System.out.println();
                 System.out.println("HOTEL MANAGEMENT SYSTEM");

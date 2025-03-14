@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args){
 
         String url = "jdbc:mysql://localhost:3306/my_db";
         String username = "root";
@@ -10,10 +10,11 @@ public class Main {
         String query = "SELECT * from students";
 
         // LOADING DRIVER
-//        try{
-//            Class.forName("com.mysql.jdbc.Driver");
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
 //            System.out.println("Driver Loaded SUCCESSFULLY !!!");
-//        }catch(ClassNotFoundException e){
+//        }
+//        catch(ClassNotFoundException e){
 //            System.out.println(e.getMessage());
 //        }
 

@@ -4,14 +4,13 @@ import java.util.Scanner;
 public class preparedStatement {
     public static void main(String[] args){
 
-        String url = "jdbc:mysql://localhost:3306/my_db";
-        String username = "root";
-        String password = "Hamraj@786";
-//        String query = "SELECT * FROM students WHERE roll = ?";
+        Connect obj = new Connect();
+
+//      String query = "SELECT * FROM students WHERE roll = ?";
         String query = "INSERT INTO students(roll, name, course, fees) VALUES (?, ?, ?, ?)";
 
      try{
-         Connection con = DriverManager.getConnection(url, username, password);
+         Connection con = DriverManager.getConnection(obj.url, obj.username, obj.password);
 
          Scanner scanner = new Scanner(System.in);
          System.out.print("Enter ROLL: ");
