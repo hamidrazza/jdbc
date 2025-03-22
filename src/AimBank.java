@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-public class AimBank {
-    static Connect obj = new Connect();
+public class AimBank{
 
     public static void main(String[] args){
 
@@ -12,7 +11,7 @@ public class AimBank {
 //        }catch(ClassNotFoundException e){
 //            System.out.println(e.getMessage());
 //        }
-
+        SignUp customer = new SignUp();
         boolean repeat = true;
         System.out.println("+--------------------------+");
         System.out.println("|   WELCOME TO AIM BANK    |");
@@ -27,12 +26,28 @@ public class AimBank {
             int choice = sc.nextInt();
 
             switch(choice){
-                case 0 -> repeat = false;
+                case 0 -> {
+                    repeat = false;
+                    customer.closeConnection();
+                }
                 // Here, we're using anonymous object
-                case 1 -> {new SignUp(choice);}
-                case 2 -> {new SignUp(choice);}
+                case 1 -> customer.Signing();
+                case 2 -> customer.Loging();
             }
         }
+        System.out.print("THANKS FOR VISITING.");
+        new Thread(()->{
+            for (int i = 0; i < 4; i++) {
+                System.out.print(". ");
+                try{
+                    System.out.print(". ");
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
 //            withdrawStatement.setDouble(1, 500.00);
 //            withdrawStatement.setString(2, "account456");
 //
