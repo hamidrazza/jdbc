@@ -38,7 +38,7 @@ public class JavaTask {
 
 
 
-        String addEmp = "INSERT INTO employees(name, salary) VALUES (?,?)";
+        String addEmp = "INSERT INTO employees(id, name, salary) VALUES (?,?,?)";
         String deleteEmp = "DELETE FROM employees WHERE id = ?";
         String searchEmp = "SELECT * FROM employees WHERE id = ?";
         String showEmp = "SELECT * FROM employees";
@@ -67,14 +67,18 @@ public class JavaTask {
 
                     case 1 ->{
                         sc.nextLine();
+                        System.out.print("Enter the employee ID: ");
+                        int id = sc.nextInt();
+                        sc.nextLine();
                         System.out.print("Enter the employee name: ");
                         String name = sc.nextLine();
 
                         System.out.print("Enter the salary: ");
                         Double salary = sc.nextDouble();
 
-                        addStatement.setString(1, name);
-                        addStatement.setDouble(2, salary);
+                        addStatement.setInt(1, id);
+                        addStatement.setString(2, name);
+                        addStatement.setDouble(3, salary);
 
                         int rowsAffected = addStatement.executeUpdate();
 
@@ -115,9 +119,9 @@ public class JavaTask {
                         searchStatement.setInt(1, id);
 
                         ResultSet rs = searchStatement.executeQuery();
-                        System.out.println("+---------------------------+");
+                        System.out.println("+-----------------------------------------------+");
                         System.out.println("| ID\t\tName\t\t\tSalary    |");
-                        System.out.println("+---------------------------+");
+                        System.out.println("+-----------------------------------------------+");
                         if(rs.next()){
                             System.out.println("| " + rs.getInt("id") + "\t" + rs.getString("name")+"\t\t" + rs.getDouble("salary") + " |");
                         }
@@ -174,18 +178,16 @@ public class JavaTask {
                     }
                     case 6 ->{
                         ResultSet rs = showStatement.executeQuery();
-                        System.out.println("+---------------------------+");
-                        System.out.println("| ID\t\tName\t\t\tSalary    |");
-                        System.out.println("+---------------------------+");
+                        System.out.println("+-------------------------------------+");
+                        System.out.println("| ID\tName\t\t\tSalary        |");
+                        System.out.println("+-------------------------------------+");
                         while(rs.next()){
-                            System.out.println("| " + rs.getInt("id") + "\t" + rs.getString("name")+"\t\t" + rs.getDouble("salary") + " |");
+                            System.out.println("  " + rs.getInt("id") + "\t" + rs.getString("name")+"\t\t" + rs.getDouble("salary"));
                         }
-                        System.out.println("+---------------------------+");
+                        System.out.println("+-------------------------------------+");
                     }
                     case 0 ->{
                         repeat = false;
-                        sc.close();
-                        con.close();
                         addStatement.close();
                         deleteStatement.close();
                         searchStatement.close();
@@ -194,6 +196,8 @@ public class JavaTask {
                         showStatement.close();
                         getNameStatement.close();
                         getSalaryStatement.close();
+                        sc.close();
+                        con.close();
                     }
                 }
             }

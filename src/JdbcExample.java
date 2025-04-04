@@ -3,13 +3,14 @@ import java.sql.*;
 public class JdbcExample {
         public static void main(String[] args) {
             try {
+                // Loading the driver of 'MySQL'
+                Class.forName("com.mysql.cj.jdbc.Driver");
+
                 // storing into a variable 'url'
                 String url = "jdbc:mysql://localhost:3306/demo_db";
                 String username = "root";
                 String password = "Hamraj@786";
 
-                // Loading the driver of 'MySQL'
-                Class.forName("com.mysql.cj.jdbc.Driver");
 
                 // Making the connection, using the 'url', 'username' and 'password'
                 Connection con = DriverManager.getConnection(url, username, password);
@@ -29,8 +30,8 @@ public class JdbcExample {
                     System.out.println(rs.getInt(1) + " " + rs.getString(2));
                 }
 //                // closing the Statement and Connection.
-//                stmt.close();
-//                con.close();
+                stmt.close();
+                con.close();
 
             }
             // catching the exception : SQLException
